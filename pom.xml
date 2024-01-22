@@ -52,6 +52,16 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.30</version>
         </dependency>
+        <dependency>
+            <groupId>com.cathive.fonts</groupId>
+            <artifactId>fonts-roboto</artifactId>
+            <version>2012023.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE170</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

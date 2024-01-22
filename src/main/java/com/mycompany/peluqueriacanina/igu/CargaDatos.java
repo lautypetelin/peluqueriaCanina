@@ -45,6 +45,7 @@ public class CargaDatos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
         jlTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 48)); // NOI18N
