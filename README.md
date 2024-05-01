@@ -36,6 +36,7 @@ Como parte de los requisitos, se desarrollará una aplicación de escritorio que
 ## Requisitos
 
 - Asegúrate de tener instalada la última versión de la aplicación para disfrutar de todas las funcionalidades.
+- Importar al Gestor de Base de Datos el archivo .sql para poder hacer uso de la persistencia en la aplicación.
 
 ## Contribuciones
 
@@ -43,4 +44,4 @@ Como parte de los requisitos, se desarrollará una aplicación de escritorio que
 
 ---
 
-¡Gracias por elegir nuestra aplicación para el registro de mascotas en la Peluquería Canina! Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto con nosotros. ¡Esperamos brindarte una experiencia única y cómoda para gestionar los datos de tus clientes peludos!
+Esta aplicación ha sido ejecutada por ultima vez en Netbeans 17 y JDK 17. Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto con nosotros. ¡Esperamos brindarte una experiencia única y cómoda para gestionar los datos de tus clientes peludos!
