@@ -2,6 +2,7 @@ D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Obj
 D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\peluqueriacanina\logica\Mascota.java
 D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\peluqueriacanina\igu\ModificarDatos.java
 D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\peluqueriacanina\igu\Principal.java
+D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\prueba\igu2\ModificarDatos2.java
 D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\peluqueriacanina\igu\CargaDatos.java
 D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\peluqueriacanina\igu\VerDatos.java
 D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\peluqueriacanina\logica\Controladora.java
@@ -10,5 +11,9 @@ D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Obj
 D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\peluqueriacanina\persistencia\exceptions\PreexistingEntityException.java
 D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\peluqueriacanina\persistencia\DuenioJpaController.java
 D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\peluqueriacanina\PeluqueriaCanina.java
+D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\prueba\igu2\VerDatos2.java
 D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\peluqueriacanina\persistencia\exceptions\NonexistentEntityException.java
+D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\prueba\igu2\CargaDatos2.java
+D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\prueba\igu2\PaginaInicial.java
+D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\prueba\igu2\Dashboard.java
 D:\Estudio\Cursos de IT\Cursos Online\Todo Code\02. Programación Orientada a Objetos con Java\peluqueriaCanina\src\main\java\com\lautaropetelin\peluqueriacanina\persistencia\MascotaJpaController.java
