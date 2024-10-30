@@ -2,8 +2,8 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="PeluCaninaPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>com.mycompany.peluqueriacanina.logica.Duenio</class>
-    <class>com.mycompany.peluqueriacanina.logica.Mascota</class>
+    <class>com.lautaropetelin.peluqueriacanina.logica.Duenio</class>
+    <class>com.lautaropetelin.peluqueriacanina.logica.Mascota</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/peluqueria_canina?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

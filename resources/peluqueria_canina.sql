@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-01-2024 a las 22:35:08
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 30-10-2024 a las 08:12:32
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,10 @@ CREATE TABLE `duenio` (
 --
 
 INSERT INTO `duenio` (`IDDUENIO`, `CELULAR`, `DIRECCION`, `NOMBRE`) VALUES
-(1, '2698124578', 'Av. Washintong 321', 'Edwar Smith');
+(1, '2622606966', 'Urquiza e Ibañez S/N C2', 'Rodolfo Petelin'),
+(2, '2664757176', 'Pasaje Avellaneda 423 P5 D38', 'Aimé Gabelli'),
+(3, '2622832705', 'Sergio Cejas 728', 'Laurinda Villavicencio'),
+(7, '2622571767', 'Urquiza e Ibañez D2 S/N', 'Nerina Palacio');
 
 -- --------------------------------------------------------
 
@@ -65,7 +68,10 @@ CREATE TABLE `mascota` (
 --
 
 INSERT INTO `mascota` (`IDCLIENTE`, `ALERGICO`, `ATENCIONESPECIAL`, `COLOR`, `NOMBRE`, `OBSERVACIONES`, `RAZA`, `DUENIO_IDDUENIO`) VALUES
-(1, 'No', 'No', 'Blanco', 'Firulais', 'Ningúna.', 'Caniche', 1);
+(1, 'No', 'No', 'Blanco, negro y naranja', 'Homero', 'Ninguna.', 'Fox Terrier', 1),
+(2, 'No', 'Si', 'Blanco', 'Katy', 'Tiene sensible las encías.', 'Caniche', 2),
+(3, 'No', 'No', 'Naranja', 'Yago', 'Suele ponerse agresivo.', 'Mestizo', 3),
+(7, 'No', 'Si', 'Negro', 'Procer', 'Ninguna.', 'Labrador', 7);
 
 --
 -- Índices para tablas volcadas
@@ -92,13 +98,13 @@ ALTER TABLE `mascota`
 -- AUTO_INCREMENT de la tabla `duenio`
 --
 ALTER TABLE `duenio`
-  MODIFY `IDDUENIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDDUENIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `IDCLIENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDCLIENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
