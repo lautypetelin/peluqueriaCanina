@@ -1,13 +1,16 @@
 package com.lautaropetelin.peluqueriacanina.logica;
 
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Duenio {
+public class Duenio implements Serializable {
     
     // Atributos
     @Id
@@ -17,15 +20,18 @@ public class Duenio {
     private String nombre;
     private String celular;
     private String direccion;
+    @OneToMany(mappedBy = "duenio")
+    private List<Mascota> mascotas;
     
     // Constructores
     public Duenio() {}
 
-    public Duenio(int idDuenio, String nombre, String celular, String direccion) {
+    public Duenio(int idDuenio, String nombre, String celular, String direccion, List<Mascota> mascotas) {
         this.idDuenio = idDuenio;
         this.nombre = nombre;
         this.celular = celular;
         this.direccion = direccion;
+        this.mascotas = mascotas;
     }
     
     // Getters y Setters
@@ -60,10 +66,18 @@ public class Duenio {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    public List<Mascota> getMascotas() {
+        return mascotas;
+    }
+
+    public void setMascotas(List<Mascota> mascotas) {
+        this.mascotas = mascotas;
+    }
     
     // Método toString
     @Override
     public String toString() {
-        return idDuenio + " - " + nombre + ", " + celular + ", " + direccion;
+        return idDuenio + " - " + nombre;
     }
 }

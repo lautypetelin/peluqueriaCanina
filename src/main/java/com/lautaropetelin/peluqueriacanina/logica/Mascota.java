@@ -1,14 +1,16 @@
 package com.lautaropetelin.peluqueriacanina.logica;
 
+import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Mascota{
+public class Mascota implements Serializable{
     
     // Atributos
     @Id
@@ -21,12 +23,23 @@ public class Mascota{
     private String alergico;
     private String atencionEspecial;
     private String observaciones;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "IDDUENO")
     private Duenio duenio;
     
     // Constructores
     public Mascota() {}
 
+    public Mascota(String nombre, String raza, String color, String alergico, String atencionEspecial, String observaciones, Duenio duenio) {
+        this.nombre = nombre;
+        this.raza = raza;
+        this.color = color;
+        this.alergico = alergico;
+        this.atencionEspecial = atencionEspecial;
+        this.observaciones = observaciones;
+        this.duenio = duenio;
+    }
+    
     public Mascota(int idCliente, String nombre, String raza, String color, String alergico, String atencionEspecial, String observaciones, Duenio duenio) {
         this.idCliente = idCliente;
         this.nombre = nombre;

@@ -1,24 +1,25 @@
 package com.lautaropetelin.peluqueriacanina.persistencia;
 
 import com.lautaropetelin.peluqueriacanina.logica.Duenio;
-import com.lautaropetelin.peluqueriacanina.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import com.lautaropetelin.peluqueriacanina.logica.Mascota;
+import com.lautaropetelin.peluqueriacanina.persistencia.exceptions.NonexistentEntityException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 public class DuenioJpaController implements Serializable {
 
     private EntityManagerFactory emf = null;
     
-    //Constructor
     public DuenioJpaController() {
-        emf = Persistence.createEntityManagerFactory("PeluCaninaPU");
+        this.emf = Persistence.createEntityManagerFactory("PeluCaninaPU");
     }
     
     public DuenioJpaController(EntityManagerFactory emf) {
@@ -30,11 +31,29 @@ public class DuenioJpaController implements Serializable {
     }
 
     public void create(Duenio duenio) {
+        if (duenio.getMascotas() == null) {
+            duenio.setMascotas(new ArrayList<Mascota>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            List<Mascota> attachedMascotas = new ArrayList<Mascota>();
+            for (Mascota mascotasMascotaToAttach : duenio.getMascotas()) {
+                mascotasMascotaToAttach = em.getReference(mascotasMascotaToAttach.getClass(), mascotasMascotaToAttach.getIdCliente());
+                attachedMascotas.add(mascotasMascotaToAttach);
+            }
+            duenio.setMascotas(attachedMascotas);
             em.persist(duenio);
+            for (Mascota mascotasMascota : duenio.getMascotas()) {
+                Duenio oldDuenioOfMascotasMascota = mascotasMascota.getDuenio();
+                mascotasMascota.setDuenio(duenio);
+                mascotasMascota = em.merge(mascotasMascota);
+                if (oldDuenioOfMascotasMascota != null) {
+                    oldDuenioOfMascotasMascota.getMascotas().remove(mascotasMascota);
+                    oldDuenioOfMascotasMascota = em.merge(oldDuenioOfMascotasMascota);
+                }
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -48,7 +67,34 @@ public class DuenioJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Duenio persistentDuenio = em.find(Duenio.class, duenio.getIdDuenio());
+            List<Mascota> mascotasOld = persistentDuenio.getMascotas();
+            List<Mascota> mascotasNew = duenio.getMascotas();
+            List<Mascota> attachedMascotasNew = new ArrayList<Mascota>();
+            for (Mascota mascotasNewMascotaToAttach : mascotasNew) {
+                mascotasNewMascotaToAttach = em.getReference(mascotasNewMascotaToAttach.getClass(), mascotasNewMascotaToAttach.getIdCliente());
+                attachedMascotasNew.add(mascotasNewMascotaToAttach);
+            }
+            mascotasNew = attachedMascotasNew;
+            duenio.setMascotas(mascotasNew);
             duenio = em.merge(duenio);
+            for (Mascota mascotasOldMascota : mascotasOld) {
+                if (!mascotasNew.contains(mascotasOldMascota)) {
+                    mascotasOldMascota.setDuenio(null);
+                    mascotasOldMascota = em.merge(mascotasOldMascota);
+                }
+            }
+            for (Mascota mascotasNewMascota : mascotasNew) {
+                if (!mascotasOld.contains(mascotasNewMascota)) {
+                    Duenio oldDuenioOfMascotasNewMascota = mascotasNewMascota.getDuenio();
+                    mascotasNewMascota.setDuenio(duenio);
+                    mascotasNewMascota = em.merge(mascotasNewMascota);
+                    if (oldDuenioOfMascotasNewMascota != null && !oldDuenioOfMascotasNewMascota.equals(duenio)) {
+                        oldDuenioOfMascotasNewMascota.getMascotas().remove(mascotasNewMascota);
+                        oldDuenioOfMascotasNewMascota = em.merge(oldDuenioOfMascotasNewMascota);
+                    }
+                }
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -77,6 +123,11 @@ public class DuenioJpaController implements Serializable {
                 duenio.getIdDuenio();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The duenio with id " + id + " no longer exists.", enfe);
+            }
+            List<Mascota> mascotas = duenio.getMascotas();
+            for (Mascota mascotasMascota : mascotas) {
+                mascotasMascota.setDuenio(null);
+                mascotasMascota = em.merge(mascotasMascota);
             }
             em.remove(duenio);
             em.getTransaction().commit();

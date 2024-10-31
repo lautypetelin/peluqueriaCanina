@@ -2,7 +2,9 @@ com\lautaropetelin\peluqueriacanina\persistencia\ControladoraPersistencia.class
 com\lautaropetelin\prueba\igu\PaginaInicial.class
 com\lautaropetelin\prueba\igu\CargaDatos$2.class
 com\lautaropetelin\peluqueriacanina\PeluqueriaCanina.class
+com\lautaropetelin\prueba\igu\ModificarDatos$3.class
 com\lautaropetelin\prueba\igu\ModificarDatos.class
+com\lautaropetelin\prueba\igu\VerDatos$4.class
 com\lautaropetelin\prueba\igu\ModificarDatos$1.class
 com\lautaropetelin\peluqueriacanina\persistencia\exceptions\NonexistentEntityException.class
 com\lautaropetelin\prueba\igu\Dashboard$2.class
@@ -11,9 +13,11 @@ com\lautaropetelin\prueba\igu\VerDatos.class
 com\lautaropetelin\peluqueriacanina\logica\Mascota.class
 com\lautaropetelin\prueba\igu\VerDatos$3.class
 com\lautaropetelin\peluqueriacanina\logica\Mascota_.class
+com\lautaropetelin\prueba\igu\CargaDatos$3.class
 com\lautaropetelin\peluqueriacanina\persistencia\exceptions\PreexistingEntityException.class
 com\lautaropetelin\prueba\igu\Dashboard.class
 com\lautaropetelin\prueba\igu\Dashboard$3.class
+com\lautaropetelin\prueba\igu\VerDatos$5.class
 com\lautaropetelin\prueba\igu\CargaDatos.class
 com\lautaropetelin\peluqueriacanina\persistencia\MascotaJpaController.class
 com\lautaropetelin\prueba\igu\VerDatos$1.class

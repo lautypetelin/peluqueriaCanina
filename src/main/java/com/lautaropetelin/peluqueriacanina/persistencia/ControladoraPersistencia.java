@@ -10,13 +10,18 @@ public class ControladoraPersistencia {
     DuenioJpaController duenioJpa = new DuenioJpaController();
     MascotaJpaController mascotaJpa = new MascotaJpaController();
 
-    public void guardar(Duenio duenio, Mascota mascota) {
-        
-        // Crear en la BD el dueño
-        duenioJpa.create(duenio);
+    public void guardarMascota(Mascota mascota, Duenio duenio) {
         
         // Crear en la BD la mascota
         mascotaJpa.create(mascota);
+        
+        try {
+            // Crear en la BD el dueño
+            duenioJpa.edit(duenio);
+        } catch (Exception ex) {
+            // La excepción está controlada desde la clase CargaDatos
+        }
+        
     } 
 
     public List<Mascota> traerMascotas() {
@@ -33,12 +38,14 @@ public class ControladoraPersistencia {
     }
 
     public Mascota traerMascota(int idMascota) {
+        
         return mascotaJpa.findMascota(idMascota);
     }
 
-    public void modificarMascota(Mascota masco) {
+    public void modificarMascota(Mascota mascota) {
+        
         try {
-            mascotaJpa.edit(masco);
+            mascotaJpa.edit(mascota);
         } catch (NonexistentEntityException ex) {
             // Excepción controlada desde la clase ModificarDatos
         } catch (Exception e){
@@ -66,5 +73,15 @@ public class ControladoraPersistencia {
         } catch (NonexistentEntityException ex) {
             // La excepción está controlada desde la clase VerDatos
         }
+    }
+
+    public List<Duenio> traerDuenios() {
+        return duenioJpa.findDuenioEntities();
+    }
+
+    public void guardarDuenio(Duenio duenio) {
+        
+        // Crear en la BD el dueño
+        duenioJpa.create(duenio);
     }
 }

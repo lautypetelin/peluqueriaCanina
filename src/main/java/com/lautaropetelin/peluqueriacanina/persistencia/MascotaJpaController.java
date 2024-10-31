@@ -1,24 +1,24 @@
 package com.lautaropetelin.peluqueriacanina.persistencia;
 
+import java.io.Serializable;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import com.lautaropetelin.peluqueriacanina.logica.Duenio;
 import com.lautaropetelin.peluqueriacanina.logica.Mascota;
 import com.lautaropetelin.peluqueriacanina.persistencia.exceptions.NonexistentEntityException;
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 public class MascotaJpaController implements Serializable {
 
     private EntityManagerFactory emf = null;
     
-    //Constructor
     public MascotaJpaController() {
-        emf = Persistence.createEntityManagerFactory("PeluCaninaPU");
+        this.emf = Persistence.createEntityManagerFactory("PeluCaninaPU");
     }
     
     public MascotaJpaController(EntityManagerFactory emf) {
@@ -34,7 +34,16 @@ public class MascotaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Duenio duenio = mascota.getDuenio();
+            if (duenio != null) {
+                duenio = em.getReference(duenio.getClass(), duenio.getIdDuenio());
+                mascota.setDuenio(duenio);
+            }
             em.persist(mascota);
+            if (duenio != null) {
+                duenio.getMascotas().add(mascota);
+                duenio = em.merge(duenio);
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -48,7 +57,22 @@ public class MascotaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Mascota persistentMascota = em.find(Mascota.class, mascota.getIdCliente());
+            Duenio duenioOld = persistentMascota.getDuenio();
+            Duenio duenioNew = mascota.getDuenio();
+            if (duenioNew != null) {
+                duenioNew = em.getReference(duenioNew.getClass(), duenioNew.getIdDuenio());
+                mascota.setDuenio(duenioNew);
+            }
             mascota = em.merge(mascota);
+            if (duenioOld != null && !duenioOld.equals(duenioNew)) {
+                duenioOld.getMascotas().remove(mascota);
+                duenioOld = em.merge(duenioOld);
+            }
+            if (duenioNew != null && !duenioNew.equals(duenioOld)) {
+                duenioNew.getMascotas().add(mascota);
+                duenioNew = em.merge(duenioNew);
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -77,6 +101,11 @@ public class MascotaJpaController implements Serializable {
                 mascota.getIdCliente();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The mascota with id " + id + " no longer exists.", enfe);
+            }
+            Duenio duenio = mascota.getDuenio();
+            if (duenio != null) {
+                duenio.getMascotas().remove(mascota);
+                duenio = em.merge(duenio);
             }
             em.remove(mascota);
             em.getTransaction().commit();
