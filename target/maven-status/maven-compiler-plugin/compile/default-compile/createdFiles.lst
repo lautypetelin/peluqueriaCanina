@@ -8,6 +8,7 @@ com\lautaropetelin\prueba\igu\VerDatos$4.class
 com\lautaropetelin\prueba\igu\ModificarDatos$1.class
 com\lautaropetelin\peluqueriacanina\persistencia\exceptions\NonexistentEntityException.class
 com\lautaropetelin\prueba\igu\Dashboard$2.class
+com\lautaropetelin\prueba\igu\VerDatos$6.class
 com\lautaropetelin\peluqueriacanina\logica\Duenio.class
 com\lautaropetelin\prueba\igu\VerDatos.class
 com\lautaropetelin\peluqueriacanina\logica\Mascota.class

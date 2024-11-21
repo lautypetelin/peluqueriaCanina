@@ -14,7 +14,7 @@ public class VerDatos extends javax.swing.JPanel {
     public VerDatos() {
         this.control = new Controladora();
         initComponents();
-        cargarTabla();
+        cargarTabla("");
     }
 
     @SuppressWarnings("unchecked")
@@ -22,6 +22,8 @@ public class VerDatos extends javax.swing.JPanel {
     private void initComponents() {
 
         jlTitulo = new javax.swing.JLabel();
+        jlNombreDuenio1 = new javax.swing.JLabel();
+        txtNombreDuenio1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMascotas = new javax.swing.JTable();
         datos = new javax.swing.JPanel();
@@ -55,6 +57,14 @@ public class VerDatos extends javax.swing.JPanel {
         jlTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlTitulo.setText("VISUALIZACIÓN DE DATOS");
+
+        jlNombreDuenio1.setText("Buscar mascota por nombre:");
+
+        txtNombreDuenio1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreDuenio1KeyReleased(evt);
+            }
+        });
 
         tblMascotas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblMascotas.setModel(new javax.swing.table.DefaultTableModel(
@@ -257,7 +267,7 @@ public class VerDatos extends javax.swing.JPanel {
                         .addComponent(txtNombreDuenio, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,9 +299,13 @@ public class VerDatos extends javax.swing.JPanel {
                 .addGap(35, 35, 35))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlNombreDuenio1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombreDuenio1)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
@@ -308,9 +322,14 @@ public class VerDatos extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jlTitulo)
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(datos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlNombreDuenio1)
+                            .addComponent(txtNombreDuenio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
@@ -373,7 +392,7 @@ public class VerDatos extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "La mascota ha sido eliminada correctamente.", "Borrado de mascota", JOptionPane.INFORMATION_MESSAGE);
 
                     // Volver a cargar la tabla.
-                    cargarTabla();
+                    cargarTabla("");
                     limpiarCampos();
                 }else{
                     return;
@@ -435,7 +454,7 @@ public class VerDatos extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "El dueño ha sido eliminado correctamente junto a sus mascotas asociadas.", "Borrado de dueño", JOptionPane.INFORMATION_MESSAGE);
 
                     // Volver a cargar la tabla.
-                    cargarTabla();
+                    cargarTabla("");
                     limpiarCampos();
                 }else{
                     return;
@@ -447,6 +466,10 @@ public class VerDatos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "No hay ningún registro para eliminar.", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarDuenioActionPerformed
+
+    private void txtNombreDuenio1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDuenio1KeyReleased
+        cargarTabla(txtNombreDuenio1.getText());
+    }//GEN-LAST:event_txtNombreDuenio1KeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
@@ -465,6 +488,7 @@ public class VerDatos extends javax.swing.JPanel {
     private javax.swing.JLabel jlDatosMascota;
     private javax.swing.JLabel jlDireccion;
     private javax.swing.JLabel jlNombreDuenio;
+    private javax.swing.JLabel jlNombreDuenio1;
     private javax.swing.JLabel jlNombreMascota;
     private javax.swing.JLabel jlObservaciones;
     private javax.swing.JLabel jlRaza;
@@ -476,12 +500,13 @@ public class VerDatos extends javax.swing.JPanel {
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombreDuenio;
+    private javax.swing.JTextField txtNombreDuenio1;
     private javax.swing.JTextField txtNombreMascota;
     private javax.swing.JTextArea txtObservaciones;
     private javax.swing.JTextField txtRaza;
     // End of variables declaration//GEN-END:variables
 
-    public void cargarTabla() {
+    public void cargarTabla(String nombre) {
         
         // Setear que no se puedan cambiar de lugar las columnas
         tblMascotas.getTableHeader().setReorderingAllowed(false); 
@@ -501,7 +526,7 @@ public class VerDatos extends javax.swing.JPanel {
         modelo.setColumnIdentifiers(titulos);
         
         // Obtener la lista de mascotas desde la BD
-        List<Mascota> listaMascotas = control.traerMascotas();
+        List<Mascota> listaMascotas = control.buscarMascotaPorNombre(nombre);
         
         // Recorrer la lista y mostrar cada uno de los elementos en la tabla
         if(!listaMascotas.isEmpty()){

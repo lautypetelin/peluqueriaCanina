@@ -106,4 +106,9 @@ public class Controladora {
         
         return controlPersis.traerDuenios();
     }
+    
+    public List<Mascota> buscarMascotaPorNombre(String nombre){
+
+        return controlPersis.buscarMascotaPorNombre(nombre);
+    }
 }

@@ -4,6 +4,8 @@ import com.lautaropetelin.peluqueriacanina.logica.Duenio;
 import com.lautaropetelin.peluqueriacanina.logica.Mascota;
 import com.lautaropetelin.peluqueriacanina.persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 public class ControladoraPersistencia {
     
@@ -42,6 +44,15 @@ public class ControladoraPersistencia {
         return mascotaJpa.findMascota(idMascota);
     }
 
+    public List<Mascota> buscarMascotaPorNombre(String n){
+        
+        EntityManager em = mascotaJpa.getEntityManager();
+        Query query = em.createQuery("SELECT m FROM Mascota m WHERE m.nombre LIKE :nombre");
+        query.setParameter("nombre", n + "%");
+        List<Mascota> lista = query.getResultList();
+        return lista;
+    }
+    
     public void modificarMascota(Mascota mascota) {
         
         try {
@@ -78,7 +89,7 @@ public class ControladoraPersistencia {
     public List<Duenio> traerDuenios() {
         return duenioJpa.findDuenioEntities();
     }
-
+    
     public void guardarDuenio(Duenio duenio) {
         
         // Crear en la BD el dueño
